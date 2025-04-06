@@ -1,1 +1,95 @@
+def length_converter():
+    print("\nLength Units: (m), kilometers (km), feet (ft), miles (mi)")
+    value = float(input("Enter the value: "))
+    unit_from = input("Convert from: ").lower()
+    unit_to = input("Convert to: ").lower()
 
+    conversions = {
+        'm': 1,
+        'km': 1000,
+        'ft': 0.3048,
+        'mi': 1609.34
+    }
+    if unit_from not in conversions or unit_to not in conversions:
+        print("Invalid unit entered.")
+        return
+     = meters / conversions[unit_to]
+    print(f"{value} {unit_from} = {result:.4f} {unit_to}")
+
+def weight_converter():
+    print("\nWeight Units: grams (g), kilograms (kg), pounds (lb), ounces (oz)")
+    value = float(input("Enter the value: "))
+    unit_from = input("Convert from: ").lower()
+    unit_to = input("Convert to: ").lower()
+
+    conversions = {
+        'g': 1,
+        'kg': 1000,
+        'lb': 453.592,
+        'oz': 28.3495
+    }
+
+    if unit_from not in conversions or unit_to not in conversions:
+        print("Invalid unit entered.")
+        return
+
+    grams = value * conversions[unit_from]
+    result = grams / conversions[unit_to]
+    print(f"{value} {unit_from} = {result:.4f} {unit_to}")
+
+def temperature_converter():
+    print("\nTemperature Units: Celsius (C), Fahrenheit (F), Kelvin (K)")
+    value = float(input("Enter the value: "))
+    unit_from = input("Convert from: ").upper()
+    unit_to = input("Convert to: ").upper()
+
+    if unit_from == 'C':
+        if unit_to == 'F':
+            result = (value * 9/5) + 32
+        elif unit_to == 'K':
+            result = value + 273.15
+        else:
+            result = value
+    elif unit_from == 'F':
+        if unit_to == 'C':
+            result = (value - 32) * 5/9
+        elif unit_to == 'K':
+            result = (value - 32) * 5/9 + 273.15
+        else:
+            result = value
+    elif unit_from == 'K':
+        if unit_to == 'C':
+            result = value - 273.15
+        elif unit_to == 'F':
+            result = (value - 273.15) * 9/5 + 32
+        else:
+            result = value
+    else:
+        print("Invalid temperature unit.")
+        return
+
+    print(f"{value}°{unit_from} = {result:.2f}°{unit_to}")
+
+def main():
+    while True:
+        print("\n--- Unit Converter ---")
+        print("1. Length")
+        print("2. Weight")
+        print("3. Temperature")
+        print("4. Quit")
+        choice = input("Select a category (1-4): ")
+
+        if choice == '1':
+            length_converter()
+        elif choice == '2':
+            weight_converter()
+        elif choice == '3':
+            temperature_converter()
+        elif choice == '4':
+            print("Goodbye, Senneto Sir.")
+            break
+        else:
+            print("Invalid selection. Try again.")
+
+if __name__ == "__main__":
+    main()
